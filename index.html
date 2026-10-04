@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>TrackAnything</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3B5249">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+  :root{
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --desk: #E4DCC9;          /* Tisch hinter der Buchseite */
+    --paper: #FAF6EB;         /* Buchseite: warmes, leicht vergilbtes Weiß */
+    --ink: #2A2620;           /* Druckerschwärze */
+    --ink-muted: #75705F;
+    --accent: #3B5249;
+    --accent-soft: rgba(59,82,73,0.12);
+    --gold: #A9822C;
+    --card-bg: #FFFDF7;
+    --border: rgba(60,48,28,0.18);
+    --danger: #8C3B2E;
+
+    --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    accent-color: var(--accent);
+    color-scheme: light;
+  }
+
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    min-height: 100%;
+    background: var(--desk);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a, button, input, textarea{ font-family: inherit; color: inherit; }
+  button{ cursor: pointer; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .app{
+    max-width: 640px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 20px 48px;
+    background: var(--paper);
+    box-shadow: 0 0 36px rgba(60,45,20,0.18);
+  }
+  @media (max-width: 680px){
+    :root{ --desk: var(--paper); }
+    .app{ box-shadow: none; }
+  }
+
+  header{
+    position: sticky;
+    top: 0;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 22px);
+    padding-bottom: 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    z-index: 5;
+  }
+  h1{
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    letter-spacing: 0.2px;
+  }
+  .subtitle{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    margin: 0;
+  }
+  .header-row{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn{
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--ink);
+    padding: 9px 14px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .btn:hover{ border-color: var(--accent); }
+  .btn-primary{
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+  .btn-text{
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .btn-text.danger{ color: var(--danger); }
+
+  #headerAction{ display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+
+  main{ padding-top: 20px; }
+
+  /* -------- Home / Listen-Übersicht -------- */
+  .empty{
+    padding: 48px 8px;
+    text-align: center;
+    color: var(--ink-muted);
+  }
+  .empty p{ max-width: 40ch; margin: 0 auto 18px; line-height: 1.5; }
+
+  .list-row{
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .list-row:hover{ border-color: var(--accent); }
+  .list-row-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .list-name{ font-size: 16.5px; font-weight: 600; }
+  .list-meta{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); white-space: nowrap; }
+  .progress-track{
+    margin-top: 10px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--accent-soft);
+    overflow: hidden;
+  }
+  .progress-fill{ height: 100%; background: var(--accent); }
+  .list-source{
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+  }
+  .list-actions{ margin-top: 10px; }
+
+  /* -------- Detail / Items -------- */
+  .back{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--ink-muted);
+    font-size: 13.5px;
+    padding: 4px 0 14px;
+  }
+  .back:hover{ color: var(--accent); }
+
+  .filter-bar{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .filter-select{
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--ink);
+    padding: 8px 10px;
+    border-radius: 3px;
+    font-size: 13.5px;
+  }
+  .chip{
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 3px;
+    font-size: 13.5px;
+  }
+  .chip:hover{ border-color: var(--accent); }
+  .chip.active{
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .filter-count{
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .item-row{
+    display: flex;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .item-row:last-child{ border-bottom: none; }
+  .item-num{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+    padding-top: 3px;
+    min-width: 26px;
+  }
+  .item-main{ flex: 1; min-width: 0; }
+  .item-top{ display: flex; align-items: flex-start; gap: 10px; }
+  .item-check{ width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+  .item-title{ font-size: 15.5px; line-height: 1.4; }
+  .item-title.done{ color: var(--ink-muted); text-decoration: line-through; text-decoration-color: var(--border); }
+  .item-year{ font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); margin-top: 2px; }
+
+  .stars{ display: flex; gap: 2px; margin-top: 8px; margin-left: 28px; }
+  .star-btn{
+    background: none;
+    border: none;
+    font-size: 17px;
+    line-height: 1;
+    padding: 2px;
+    color: var(--border);
+  }
+  .star-btn.filled{ color: var(--gold); }
+
+  .note-field{
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    margin-left: 28px;
+    max-width: calc(100% - 28px);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 4px 0 6px;
+    font-size: 13.5px;
+    color: var(--ink);
+    resize: vertical;
+    min-height: 32px;
+  }
+  .note-field::placeholder{ color: var(--ink-muted); }
+  .note-field:focus{ border-bottom-color: var(--accent); }
+
+  @media (prefers-reduced-motion: no-preference){
+    .list-row, .btn, .progress-fill{ transition: border-color 0.15s ease, background-color 0.15s ease; }
+  }
+
+  .toast{
+    position: fixed;
+    left: 50%;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .toast.show{ opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-row">
+        <div>
+          <h1 id="pageTitle">TrackAnything</h1>
+          <p class="subtitle" id="pageSubtitle">Deine Listen</p>
+        </div>
+        <div id="headerAction"></div>
+      </div>
+    </header>
+    <main id="main"></main>
+  </div>
+
+  <input type="file" id="fileInput" accept="application/json" hidden>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "trackanything:lists:v1";
+
+  function loadLists(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){
+      console.error("Konnte Listen nicht laden:", e);
+      return [];
+    }
+  }
+
+  function saveLists(lists){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(lists));
+    }catch(e){
+      console.error("Konnte Listen nicht speichern:", e);
+      showToast("Speichern fehlgeschlagen");
+    }
+  }
+
+  var VIEW_KEY = "trackanything:view:v1";
+  var SORTS = ["original", "newest", "oldest"];
+
+  function loadView(){
+    var view = { sort: "original", hideChecked: false };
+    try{
+      var raw = localStorage.getItem(VIEW_KEY);
+      if(raw){
+        var v = JSON.parse(raw);
+        if(SORTS.indexOf(v.sort) !== -1) view.sort = v.sort;
+        view.hideChecked = v.hideChecked === true;
+      }
+    }catch(e){ console.error("Konnte Ansicht nicht laden:", e); }
+    return view;
+  }
+
+  function saveView(view){
+    try{ localStorage.setItem(VIEW_KEY, JSON.stringify(view)); }
+    catch(e){ console.error("Konnte Ansicht nicht speichern:", e); }
+  }
+
+  var state = {
+    lists: loadLists(),
+    screen: "home",
+    currentListId: null,
+    view: loadView()
+  };
+
+  function uid(){
+    return "l_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(ch){
+      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[ch];
+    });
+  }
+
+  function showToast(msg){
+    var toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(function(){ toast.classList.remove("show"); }, 2200);
+  }
+
+  // ---------- Import ----------
+
+  function importParsedList(parsed, fileName){
+    if(!parsed || typeof parsed.listName !== "string" || !Array.isArray(parsed.items)){
+      showToast("Ungültiges Format: erwartet { listName, items: [...] }");
+      return;
+    }
+
+    var list = state.lists.find(function(l){
+      return l.sourceFileName === fileName && l.name === parsed.listName;
+    });
+
+    var isNew = false;
+    if(!list){
+      list = { id: uid(), name: parsed.listName, sourceFileName: fileName, importedAt: Date.now(), items: [] };
+      state.lists.unshift(list);
+      isNew = true;
+    }
+
+    var existingIds = {};
+    list.items.forEach(function(it){ existingIds[it.externalId] = true; });
+
+    var added = 0;
+    parsed.items.forEach(function(item, index){
+      var externalId = (item.id !== undefined && item.id !== null) ? String(item.id) : String(index);
+      if(!existingIds[externalId]){
+        list.items.push({
+          externalId: externalId,
+          title: String(item.title || "(ohne Titel)"),
+          year: (item.year !== undefined ? item.year : null),
+          extra: (item.extra !== undefined ? item.extra : null),
+          checked: item.checked === true,
+          rating: (Number.isInteger(item.rating) && item.rating >= 0 && item.rating <= 5) ? item.rating : 0,
+          note: (typeof item.note === "string") ? item.note : ""
+        });
+        added++;
+      }
+    });
+
+    saveLists(state.lists);
+    state.currentListId = list.id;
+    state.screen = "list";
+    render();
+
+    if(isNew){
+      showToast('"' + list.name + '" importiert (' + added + ' Einträge)');
+    }else{
+      showToast(added > 0 ? added + " neue Einträge ergänzt" : "Keine neuen Einträge gefunden");
+    }
+  }
+
+  document.getElementById("fileInput").addEventListener("change", function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var parsed = JSON.parse(String(reader.result));
+        importParsedList(parsed, file.name);
+      }catch(err){
+        showToast("Datei konnte nicht gelesen werden: ungültiges JSON");
+        console.error(err);
+      }
+    };
+    reader.onerror = function(){ showToast("Datei konnte nicht gelesen werden"); };
+    reader.readAsText(file);
+    e.target.value = "";
+  });
+
+  window.triggerImport = function(){
+    document.getElementById("fileInput").click();
+  };
+
+  // ---------- Export ----------
+
+  window.exportList = function(listId){
+    var list = state.lists.find(function(l){ return l.id === listId; });
+    if(!list) return;
+
+    // Gleiches Format wie beim Import, plus Fortschritt (checked, rating, note).
+    var data = {
+      listName: list.name,
+      exportedAt: new Date().toISOString(),
+      items: list.items.map(function(it){
+        return {
+          id: it.externalId,
+          title: it.title,
+          year: it.year,
+          extra: it.extra,
+          checked: it.checked,
+          rating: it.rating,
+          note: it.note
+        };
+      })
+    };
+
+    var safeName = list.name.replace(/[^\w\u00C0-\u024F-]+/g, "_").replace(/^_+|_+$/g, "") || "liste";
+    var fileName = safeName + "_" + new Date().toISOString().slice(0, 10) + ".json";
+
+    try{
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+      showToast('"' + fileName + '" exportiert');
+    }catch(err){
+      console.error(err);
+      showToast("Export fehlgeschlagen");
+    }
+  };
+
+  // ---------- Aktionen ----------
+
+  window.openList = function(listId){
+    state.currentListId = listId;
+    state.screen = "list";
+    render();
+  };
+
+  window.setSort = function(value){
+    if(SORTS.indexOf(value) === -1) return;
+    state.view.sort = value;
+    saveView(state.view);
+    render();
+  };
+
+  window.toggleHideChecked = function(){
+    state.view.hideChecked = !state.view.hideChecked;
+    saveView(state.view);
+    render();
+  };
+
+  window.goHome = function(){
+    state.screen = "home";
+    state.currentListId = null;
+    render();
+  };
+
+  window.deleteList = function(listId, ev){
+    if(ev) ev.stopPropagation();
+    var list = state.lists.find(function(l){ return l.id === listId; });
+    if(!list) return;
+    if(!confirm('"' + list.name + '" wirklich entfernen? Der Fortschritt geht dabei verloren.')) return;
+    state.lists = state.lists.filter(function(l){ return l.id !== listId; });
+    saveLists(state.lists);
+    render();
+  };
+
+  window.toggleCheck = function(listId, externalId){
+    var list = state.lists.find(function(l){ return l.id === listId; });
+    if(!list) return;
+    var item = list.items.find(function(i){ return i.externalId === externalId; });
+    if(!item) return;
+    item.checked = !item.checked;
+    saveLists(state.lists);
+    render();
+  };
+
+  window.setRating = function(listId, externalId, rating){
+    var list = state.lists.find(function(l){ return l.id === listId; });
+    if(!list) return;
+    var item = list.items.find(function(i){ return i.externalId === externalId; });
+    if(!item) return;
+    item.rating = (item.rating === rating) ? 0 : rating; // nochmal draufklicken setzt zurück
+    saveLists(state.lists);
+    render();
+  };
+
+  window.updateNote = function(listId, externalId, value){
+    var list = state.lists.find(function(l){ return l.id === listId; });
+    if(!list) return;
+    var item = list.items.find(function(i){ return i.externalId === externalId; });
+    if(!item) return;
+    item.note = value;
+    saveLists(state.lists); // kein render() hier, sonst verliert das Textfeld den Fokus
+  };
+
+  // ---------- Rendering ----------
+
+  function progressOf(list){
+    var total = list.items.length;
+    var done = list.items.filter(function(i){ return i.checked; }).length;
+    return { done: done, total: total, pct: total ? Math.round((done / total) * 100) : 0 };
+  }
+
+  // Erste vierstellige Zahl aus dem Jahr-Feld (funktioniert auch bei "1979" oder "2010–2015"), sonst null.
+  function yearOf(value){
+    if(value === null || value === undefined) return null;
+    var m = String(value).match(/\d{4}/);
+    return m ? parseInt(m[0], 10) : null;
+  }
+
+  function render(){
+    var main = document.getElementById("main");
+    var headerAction = document.getElementById("headerAction");
+    var title = document.getElementById("pageTitle");
+    var subtitle = document.getElementById("pageSubtitle");
+
+    if(state.screen === "home"){
+      title.textContent = "TrackAnything";
+      subtitle.textContent = state.lists.length
+        ? state.lists.length + (state.lists.length === 1 ? " Liste" : " Listen")
+        : "Noch keine Liste importiert";
+      headerAction.innerHTML = '<button class="btn btn-primary" onclick="triggerImport()">Liste importieren</button>';
+
+      if(state.lists.length === 0){
+        main.innerHTML =
+          '<div class="empty">' +
+            '<p>Importiere eine JSON-Datei mit deiner Liste (z.\u00A0B. von deinem Python-Skript erzeugt), um loszulegen.</p>' +
+            '<button class="btn btn-primary" onclick="triggerImport()">Erste Liste importieren</button>' +
+          '</div>';
+        return;
+      }
+
+      var rows = state.lists.map(function(list){
+        var p = progressOf(list);
+        return (
+          '<button class="list-row" onclick="openList(\'' + list.id + '\')">' +
+            '<div class="list-row-top">' +
+              '<span class="list-name">' + escapeHtml(list.name) + '</span>' +
+              '<span class="list-meta">' + p.done + ' / ' + p.total + '</span>' +
+            '</div>' +
+            '<div class="progress-track"><div class="progress-fill" style="width:' + p.pct + '%"></div></div>' +
+            '<div class="list-source">' + escapeHtml(list.sourceFileName) + '</div>' +
+            '<div class="list-actions"><span class="btn-text danger" onclick="deleteList(\'' + list.id + '\', event)">Entfernen</span></div>' +
+          '</button>'
+        );
+      }).join("");
+      main.innerHTML = rows;
+      return;
+    }
+
+    // screen === "list"
+    var list = state.lists.find(function(l){ return l.id === state.currentListId; });
+    if(!list){ state.screen = "home"; render(); return; }
+
+    var p = progressOf(list);
+    title.textContent = list.name;
+    subtitle.textContent = p.done + " von " + p.total + " erledigt · " + p.pct + "\u0025";
+    headerAction.innerHTML =
+      '<button class="btn" onclick="triggerImport()">Erneut importieren</button>' +
+      '<button class="btn btn-primary" onclick="exportList(\'' + list.id + '\')">Exportieren</button>';
+
+    // Filtern und Sortieren; die Nummer bleibt die Position in der Originalliste.
+    var entries = list.items.map(function(item, idx){ return { item: item, idx: idx }; });
+    if(state.view.hideChecked){
+      entries = entries.filter(function(e){ return !e.item.checked; });
+    }
+    if(state.view.sort !== "original"){
+      var dir = state.view.sort === "newest" ? -1 : 1;
+      entries.sort(function(a, b){
+        var ya = yearOf(a.item.year), yb = yearOf(b.item.year);
+        if(ya === null && yb === null) return a.idx - b.idx;
+        if(ya === null) return 1;   // Einträge ohne Jahr immer ans Ende
+        if(yb === null) return -1;
+        return (ya !== yb) ? (ya - yb) * dir : a.idx - b.idx;
+      });
+    }
+
+    var itemsHtml = entries.map(function(entry){
+      var item = entry.item, idx = entry.idx;
+      var num = String(idx + 1).padStart(3, "0");
+      var starsHtml = "";
+      for(var s = 1; s <= 5; s++){
+        starsHtml +=
+          '<button class="star-btn' + (s <= item.rating ? ' filled' : '') +
+          '" onclick="setRating(\'' + list.id + '\', \'' + item.externalId + '\', ' + s + ')" ' +
+          'aria-label="' + s + ' Sterne">' + (s <= item.rating ? "\u2605" : "\u2606") + '</button>';
+      }
+      return (
+        '<div class="item-row">' +
+          '<div class="item-num">' + num + '</div>' +
+          '<div class="item-main">' +
+            '<div class="item-top">' +
+              '<input class="item-check" type="checkbox" ' + (item.checked ? "checked" : "") +
+                ' onchange="toggleCheck(\'' + list.id + '\', \'' + item.externalId + '\')" aria-label="' + escapeHtml(item.title) + ' abhaken">' +
+              '<div>' +
+                '<div class="item-title' + (item.checked ? ' done' : '') + '">' + escapeHtml(item.title) + '</div>' +
+                (item.year ? '<div class="item-year">' + escapeHtml(item.year) + '</div>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="stars">' + starsHtml + '</div>' +
+            '<textarea class="note-field" placeholder="Notiz hinzufügen…" rows="1" ' +
+              'onchange="updateNote(\'' + list.id + '\', \'' + item.externalId + '\', this.value)">' +
+              escapeHtml(item.note) +
+            '</textarea>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+
+    var filterBar =
+      '<div class="filter-bar">' +
+        '<select class="filter-select" aria-label="Sortierung" onchange="setSort(this.value)">' +
+          '<option value="original"' + (state.view.sort === "original" ? " selected" : "") + '>Originalreihenfolge</option>' +
+          '<option value="newest"' + (state.view.sort === "newest" ? " selected" : "") + '>Neueste zuerst</option>' +
+          '<option value="oldest"' + (state.view.sort === "oldest" ? " selected" : "") + '>Älteste zuerst</option>' +
+        '</select>' +
+        '<button class="chip' + (state.view.hideChecked ? ' active' : '') + '" aria-pressed="' + state.view.hideChecked +
+          '" onclick="toggleHideChecked()">Erledigte ausblenden</button>' +
+        '<span class="filter-count">' + entries.length + ' / ' + list.items.length + '</span>' +
+      '</div>';
+
+    var body;
+    if(!list.items.length){
+      body = '<div class="empty"><p>Diese Liste enthält keine Einträge.</p></div>';
+    }else if(!entries.length){
+      body = '<div class="empty"><p>Alles erledigt, keine offenen Einträge mehr.</p></div>';
+    }else{
+      body = itemsHtml;
+    }
+
+    main.innerHTML =
+      '<button class="back" onclick="goHome()">\u2190 Alle Listen</button>' +
+      (list.items.length ? filterBar : '') +
+      body;
+  }
+
+  render();
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function (err) {
+        console.error("Service Worker Registrierung fehlgeschlagen:", err);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
