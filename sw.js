@@ -1,6 +1,6 @@
 // Einfacher Cache-First Service Worker für TrackAnything.
 // Bei neuen Versionen: CACHE_NAME hochzählen, damit alte Caches ersetzt werden.
-const CACHE_NAME = "trackanything-v5";
+const CACHE_NAME = "trackanything-v7";
 const ASSETS = [
   "./index.html",
   "./manifest.json",

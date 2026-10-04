@@ -129,6 +129,19 @@
     color: var(--ink-muted);
   }
   .empty p{ max-width: 40ch; margin: 0 auto 18px; line-height: 1.5; }
+  .empty .error-note{
+    max-width: 48ch;
+    margin: 0 auto 18px;
+    padding: 10px 12px;
+    border: 1px solid var(--danger);
+    border-radius: 3px;
+    color: var(--danger);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    word-break: break-word;
+  }
 
   .list-row{
     display: block;
@@ -354,7 +367,8 @@
     lists: loadLists(),
     screen: "home",
     currentListId: null,
-    view: loadView()
+    view: loadView(),
+    defaultListError: ""
   };
 
   function uid(){
@@ -367,20 +381,24 @@
     });
   }
 
-  function showToast(msg){
+  function showToast(msg, ms){
     var toast = document.getElementById("toast");
     toast.textContent = msg;
     toast.classList.add("show");
     clearTimeout(showToast._t);
-    showToast._t = setTimeout(function(){ toast.classList.remove("show"); }, 2200);
+    showToast._t = setTimeout(function(){ toast.classList.remove("show"); }, ms || 2200);
   }
 
   // ---------- Import ----------
 
+  function isValidList(parsed){
+    return !!parsed && typeof parsed.listName === "string" && Array.isArray(parsed.items);
+  }
+
   // opts.silent: Hintergrund-Abgleich (Standardliste) ohne Toasts und ohne Bildschirmwechsel bei bestehender Liste.
   function importParsedList(parsed, fileName, opts){
     opts = opts || {};
-    if(!parsed || typeof parsed.listName !== "string" || !Array.isArray(parsed.items)){
+    if(!isValidList(parsed)){
       if(!opts.silent) showToast("Ungültiges Format: erwartet { listName, items: [...] }");
       return;
     }
@@ -597,6 +615,10 @@
         main.innerHTML =
           '<div class="empty">' +
             '<p>Importiere eine JSON-Datei mit deiner Liste (z.\u00A0B. von deinem Python-Skript erzeugt), um loszulegen.</p>' +
+            (state.defaultListError
+              ? '<p class="error-note">' + escapeHtml(state.defaultListError) + '</p>' +
+                '<p><button class="btn" onclick="retryDefaultList()">Standardliste erneut laden</button></p>'
+              : '') +
             '<button class="btn btn-primary" onclick="triggerImport()">Erste Liste importieren</button>' +
           '</div>';
         return;
@@ -707,20 +729,45 @@
   }
 
   // ---------- Standardliste ----------
-  // Diese Datei liegt im selben Ordner wie index.html. Dateiname hier anpassen, falls er anders lautet
-  // (Groß-/Kleinschreibung beachten, viele Webserver unterscheiden das).
-  var DEFAULT_LIST_FILE = "./lists/die_drei_fragezeichen.json";
+  // Pfad der Standardliste relativ zu index.html (Groß-/Kleinschreibung beachten, viele Webserver unterscheiden das).
+  var DEFAULT_LIST_URL = "lists/die_drei_fragezeichen.json";
+  // Intern zählt nur der Dateiname, so passt auch ein manueller Import derselben Datei zur gleichen Liste.
+  var DEFAULT_LIST_FILE = DEFAULT_LIST_URL.split("/").pop();
 
   function loadDefaultList(){
     if(!window.fetch) return;
-    fetch(encodeURI(DEFAULT_LIST_FILE), { cache: "no-cache" })
+    fetch(encodeURI(DEFAULT_LIST_URL), { cache: "no-cache" })
       .then(function(res){
-        if(!res.ok) throw new Error("HTTP " + res.status);
-        return res.json();
+        if(!res.ok) throw new Error("Datei nicht gefunden bzw. nicht abrufbar (HTTP " + res.status + ")");
+        return res.text();
       })
-      .then(function(parsed){ importParsedList(parsed, DEFAULT_LIST_FILE, { silent: true }); })
-      .catch(function(err){ console.warn("Standardliste nicht geladen:", err); });
+      .then(function(text){
+        var parsed;
+        try{ parsed = JSON.parse(text.replace(/^\uFEFF/, "")); }
+        catch(e){ throw new Error("Die Datei ist kein gültiges JSON (" + e.message + "). Beginnt sie mit: " + text.slice(0, 40).replace(/\s+/g, " ") + " ?"); }
+        if(!isValidList(parsed)){
+          throw new Error("Das Format passt nicht: erwartet { \"listName\": \"...\", \"items\": [ ... ] }");
+        }
+        state.defaultListError = "";
+        importParsedList(parsed, DEFAULT_LIST_FILE, { silent: true });
+      })
+      .catch(function(err){
+        console.warn("Standardliste nicht geladen:", err);
+        // Fehler nur zeigen, wenn die Liste noch nie importiert wurde (offline mit vorhandener Liste ist normal).
+        var alreadyThere = state.lists.some(function(l){ return l.sourceFileName === DEFAULT_LIST_FILE; });
+        if(!alreadyThere){
+          state.defaultListError = "Standardliste \"" + DEFAULT_LIST_URL + "\" konnte nicht geladen werden: " + err.message;
+          if(state.screen === "home") render();
+          showToast("Standardliste konnte nicht geladen werden", 4000);
+        }
+      });
   }
+
+  window.retryDefaultList = function(){
+    state.defaultListError = "";
+    showToast("Lade Standardliste …");
+    loadDefaultList();
+  };
 
   // Schon importiert? Dann direkt in dieser Liste starten.
   var defaultList = state.lists.find(function(l){ return l.sourceFileName === DEFAULT_LIST_FILE; });
