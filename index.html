@@ -377,9 +377,11 @@
 
   // ---------- Import ----------
 
-  function importParsedList(parsed, fileName){
+  // opts.silent: Hintergrund-Abgleich (Standardliste) ohne Toasts und ohne Bildschirmwechsel bei bestehender Liste.
+  function importParsedList(parsed, fileName, opts){
+    opts = opts || {};
     if(!parsed || typeof parsed.listName !== "string" || !Array.isArray(parsed.items)){
-      showToast("Ungültiges Format: erwartet { listName, items: [...] }");
+      if(!opts.silent) showToast("Ungültiges Format: erwartet { listName, items: [...] }");
       return;
     }
 
@@ -414,15 +416,21 @@
       }
     });
 
+    if(opts.silent && !isNew && added === 0) return;   // nichts zu tun, nichts neu zeichnen
+
     saveLists(state.lists);
-    state.currentListId = list.id;
-    state.screen = "list";
+    if(!opts.silent || isNew){
+      state.currentListId = list.id;
+      state.screen = "list";
+    }
     render();
 
     if(isNew){
       showToast('"' + list.name + '" importiert (' + added + ' Einträge)');
+    }else if(added > 0){
+      showToast(added + " neue Einträge ergänzt");
     }else{
-      showToast(added > 0 ? added + " neue Einträge ergänzt" : "Keine neuen Einträge gefunden");
+      showToast("Keine neuen Einträge gefunden");
     }
   }
 
@@ -698,7 +706,31 @@
       body;
   }
 
+  // ---------- Standardliste ----------
+  // Diese Datei liegt im selben Ordner wie index.html. Dateiname hier anpassen, falls er anders lautet
+  // (Groß-/Kleinschreibung beachten, viele Webserver unterscheiden das).
+  var DEFAULT_LIST_FILE = "Die drei Fragezeichen.json";
+
+  function loadDefaultList(){
+    if(!window.fetch) return;
+    fetch(encodeURI(DEFAULT_LIST_FILE), { cache: "no-cache" })
+      .then(function(res){
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function(parsed){ importParsedList(parsed, DEFAULT_LIST_FILE, { silent: true }); })
+      .catch(function(err){ console.warn("Standardliste nicht geladen:", err); });
+  }
+
+  // Schon importiert? Dann direkt in dieser Liste starten.
+  var defaultList = state.lists.find(function(l){ return l.sourceFileName === DEFAULT_LIST_FILE; });
+  if(defaultList){
+    state.currentListId = defaultList.id;
+    state.screen = "list";
+  }
+
   render();
+  loadDefaultList();   // beim ersten Start importieren, später neue Einträge ergänzen
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {

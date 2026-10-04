@@ -1,6 +1,6 @@
 // Einfacher Cache-First Service Worker für TrackAnything.
 // Bei neuen Versionen: CACHE_NAME hochzählen, damit alte Caches ersetzt werden.
-const CACHE_NAME = "trackanything-v4";
+const CACHE_NAME = "trackanything-v5";
 const ASSETS = [
   "./index.html",
   "./manifest.json",
@@ -30,6 +30,26 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  // Listen-Dateien (.json, außer Manifest): Netzwerk zuerst, damit neue Einträge ankommen.
+  // Offline wird die zuletzt gespeicherte Fassung geliefert.
+  const url = new URL(event.request.url);
+  if (url.origin === self.location.origin &&
+      url.pathname.endsWith(".json") &&
+      !url.pathname.endsWith("manifest.json")) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
