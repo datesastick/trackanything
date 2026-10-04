@@ -1,0 +1,1210 @@
+{
+  "listName": "Die drei Fragezeichen",
+  "items": [
+    {
+      "id": "001",
+      "title": "… und der Super-Papagei",
+      "year": 1979
+    },
+    {
+      "id": "002",
+      "title": "… und der Phantomsee",
+      "year": 1979
+    },
+    {
+      "id": "003",
+      "title": "… und der Karpatenhund",
+      "year": 1979
+    },
+    {
+      "id": "004",
+      "title": "… und die schwarze Katze",
+      "year": 1979
+    },
+    {
+      "id": "005",
+      "title": "… und der Fluch des Rubins",
+      "year": 1979
+    },
+    {
+      "id": "006",
+      "title": "… und der sprechende Totenkopf",
+      "year": 1979
+    },
+    {
+      "id": "007",
+      "title": "… und der unheimliche Drache",
+      "year": 1979
+    },
+    {
+      "id": "008",
+      "title": "… und der grüne Geist",
+      "year": 1979
+    },
+    {
+      "id": "009",
+      "title": "… und die rätselhaften Bilder",
+      "year": 1979
+    },
+    {
+      "id": "010",
+      "title": "… und die flüsternde Mumie",
+      "year": 1980
+    },
+    {
+      "id": "011",
+      "title": "… und das Gespensterschloss",
+      "year": 1980
+    },
+    {
+      "id": "012",
+      "title": "… und der seltsame Wecker",
+      "year": 1980
+    },
+    {
+      "id": "013",
+      "title": "… und der lachende Schatten",
+      "year": 1980
+    },
+    {
+      "id": "014",
+      "title": "… und das Bergmonster",
+      "year": 1980
+    },
+    {
+      "id": "015",
+      "title": "… und der rasende Löwe",
+      "year": 1980
+    },
+    {
+      "id": "016",
+      "title": "… und der Zauberspiegel",
+      "year": 1980
+    },
+    {
+      "id": "017",
+      "title": "… und die gefährliche Erbschaft",
+      "year": 1980
+    },
+    {
+      "id": "018",
+      "title": "… und die Geisterinsel",
+      "year": 1980
+    },
+    {
+      "id": "019",
+      "title": "… und der Teufelsberg",
+      "year": 1980
+    },
+    {
+      "id": "020",
+      "title": "… und die flammende Spur",
+      "year": 1980
+    },
+    {
+      "id": "021",
+      "title": "… und der tanzende Teufel[Anm. 1]",
+      "year": 1980
+    },
+    {
+      "id": "022",
+      "title": "… und der verschwundene Schatz",
+      "year": 1981
+    },
+    {
+      "id": "023",
+      "title": "… und das Aztekenschwert",
+      "year": 1981
+    },
+    {
+      "id": "024",
+      "title": "… und die silberne Spinne",
+      "year": 1981
+    },
+    {
+      "id": "025",
+      "title": "… und die singende Schlange",
+      "year": 1981
+    },
+    {
+      "id": "026",
+      "title": "… und die Silbermine",
+      "year": 1981
+    },
+    {
+      "id": "027",
+      "title": "… und der magische Kreis",
+      "year": 1981
+    },
+    {
+      "id": "028",
+      "title": "… und der Doppelgänger",
+      "year": 1982
+    },
+    {
+      "id": "029",
+      "title": "Die Original-Musik der Europa-Jugendserie",
+      "year": 1982
+    },
+    {
+      "id": "030",
+      "title": "… und das Riff der Haie",
+      "year": 1982
+    },
+    {
+      "id": "031",
+      "title": "… und das Narbengesicht[Anm. 3][3]",
+      "year": 1983
+    },
+    {
+      "id": "032",
+      "title": "… und der Ameisenmensch",
+      "year": 1983
+    },
+    {
+      "id": "033",
+      "title": "… und die bedrohte Ranch",
+      "year": 1983
+    },
+    {
+      "id": "034",
+      "title": "… und der rote Pirat[Anm. 4]",
+      "year": 1984
+    },
+    {
+      "id": "035",
+      "title": "… und der Höhlenmensch",
+      "year": 1984
+    },
+    {
+      "id": "036",
+      "title": "… und der Super-Wal",
+      "year": 1985
+    },
+    {
+      "id": "037",
+      "title": "… und der heimliche Hehler",
+      "year": 1985
+    },
+    {
+      "id": "038",
+      "title": "… und der unsichtbare Gegner",
+      "year": 1986
+    },
+    {
+      "id": "039",
+      "title": "… und die Perlenvögel",
+      "year": 1986
+    },
+    {
+      "id": "040",
+      "title": "… und der Automarder",
+      "year": 1986
+    },
+    {
+      "id": "041",
+      "title": "… und das Volk der Winde",
+      "year": 1987
+    },
+    {
+      "id": "042",
+      "title": "… und der weinende Sarg",
+      "year": 1987
+    },
+    {
+      "id": "043",
+      "title": "… und der höllische Werwolf",
+      "year": 1988
+    },
+    {
+      "id": "044",
+      "title": "… und der gestohlene Preis",
+      "year": 1988
+    },
+    {
+      "id": "045",
+      "title": "… und das Gold der Wikinger",
+      "year": 1989
+    },
+    {
+      "id": "046",
+      "title": "… und der schrullige Millionär",
+      "year": 1989
+    },
+    {
+      "id": "047",
+      "title": "… und der giftige Gockel",
+      "year": 1990
+    },
+    {
+      "id": "048",
+      "title": "… und die gefährlichen Fässer",
+      "year": 1990
+    },
+    {
+      "id": "049",
+      "title": "… und die Comic-Diebe",
+      "year": 1990
+    },
+    {
+      "id": "050",
+      "title": "… und der verschwundene Filmstar",
+      "year": 1991
+    },
+    {
+      "id": "051",
+      "title": "… und der riskante Ritt",
+      "year": 1991
+    },
+    {
+      "id": "052",
+      "title": "… und die Musikpiraten",
+      "year": 1991
+    },
+    {
+      "id": "053",
+      "title": "… und die Automafia",
+      "year": 1991
+    },
+    {
+      "id": "054",
+      "title": "Gefahr im Verzug",
+      "year": 1992
+    },
+    {
+      "id": "055",
+      "title": "Gekaufte Spieler",
+      "year": 1992
+    },
+    {
+      "id": "056",
+      "title": "Angriff der Computer-Viren[Anm. 9]",
+      "year": 1992
+    },
+    {
+      "id": "057",
+      "title": "Tatort Zirkus",
+      "year": 1994
+    },
+    {
+      "id": "058",
+      "title": "… und der verrückte Maler",
+      "year": 1994
+    },
+    {
+      "id": "059",
+      "title": "Giftiges Wasser",
+      "year": 1994
+    },
+    {
+      "id": "060",
+      "title": "Dopingmixer",
+      "year": 1994
+    },
+    {
+      "id": "061",
+      "title": "… und die Rache des Tigers",
+      "year": 1995
+    },
+    {
+      "id": "062",
+      "title": "Spuk im Hotel",
+      "year": 1995
+    },
+    {
+      "id": "063",
+      "title": "Fußball-Gangster",
+      "year": 1995
+    },
+    {
+      "id": "064",
+      "title": "Geisterstadt",
+      "year": 1995
+    },
+    {
+      "id": "065",
+      "title": "Diamantenschmuggel",
+      "year": 1995
+    },
+    {
+      "id": "066",
+      "title": "… und die Schattenmänner",
+      "year": 1995
+    },
+    {
+      "id": "067",
+      "title": "Geheimnis der Särge[Anm.1 1]",
+      "year": 1996
+    },
+    {
+      "id": "068",
+      "title": "Schatz im Bergsee[Anm.1 2]",
+      "year": 1996
+    },
+    {
+      "id": "069",
+      "title": "Späte Rache",
+      "year": 1996
+    },
+    {
+      "id": "070",
+      "title": "Schüsse aus dem Dunkel",
+      "year": 1996
+    },
+    {
+      "id": "071",
+      "title": "Die verschwundene Seglerin",
+      "year": 1996
+    },
+    {
+      "id": "072",
+      "title": "Dreckiger Deal",
+      "year": 1996
+    },
+    {
+      "id": "075",
+      "title": "Die Spur des Raben",
+      "year": 1997
+    },
+    {
+      "id": "073",
+      "title": "Poltergeist",
+      "year": 1997
+    },
+    {
+      "id": "074",
+      "title": "… und das brennende Schwert",
+      "year": 1997
+    },
+    {
+      "id": "077",
+      "title": "Pistenteufel",
+      "year": 1997
+    },
+    {
+      "id": "076",
+      "title": "Stimmen aus dem Nichts",
+      "year": 1997
+    },
+    {
+      "id": "078",
+      "title": "Das leere Grab",
+      "year": 1998
+    },
+    {
+      "id": "081",
+      "title": "Verdeckte Fouls",
+      "year": 1998
+    },
+    {
+      "id": "079",
+      "title": "Im Bann des Voodoo",
+      "year": 1998
+    },
+    {
+      "id": "080",
+      "title": "Geheimsache Ufo[Anm.1 3][6]",
+      "year": 1998
+    },
+    {
+      "id": "083",
+      "title": "Meuterei auf hoher See",
+      "year": 1999
+    },
+    {
+      "id": "084",
+      "title": "Musik des Teufels",
+      "year": 1999
+    },
+    {
+      "id": "082",
+      "title": "Die Karten des Bösen",
+      "year": 1998
+    },
+    {
+      "id": "087",
+      "title": "Wolfsgesicht",
+      "year": 1999
+    },
+    {
+      "id": "086",
+      "title": "Nacht in Angst",
+      "year": 1999
+    },
+    {
+      "id": "085",
+      "title": "Feuerturm",
+      "year": 1999
+    },
+    {
+      "id": "089",
+      "title": "Tödliche Spur",
+      "year": 2000
+    },
+    {
+      "id": "088",
+      "title": "Vampir im Internet",
+      "year": 1999
+    },
+    {
+      "id": "093",
+      "title": "… und das Geisterschiff",
+      "year": 2000
+    },
+    {
+      "id": "092",
+      "title": "Todesflug",
+      "year": 2000
+    },
+    {
+      "id": "091",
+      "title": "Labyrinth der Götter[Anm.1 4]",
+      "year": 2000
+    },
+    {
+      "id": "096",
+      "title": "… und der rote Rächer",
+      "year": 2001
+    },
+    {
+      "id": "094",
+      "title": "Das schwarze Monster",
+      "year": 2000
+    },
+    {
+      "id": "095",
+      "title": "Botschaft von Geisterhand",
+      "year": 2001
+    },
+    {
+      "id": "097",
+      "title": "Insektenstachel",
+      "year": 2001
+    },
+    {
+      "id": "099",
+      "title": "Rufmord",
+      "year": 2001
+    },
+    {
+      "id": "098",
+      "title": "Tal des Schreckens",
+      "year": 2001
+    },
+    {
+      "id": "102",
+      "title": "Doppelte Täuschung",
+      "year": 2002
+    },
+    {
+      "id": "101",
+      "title": "… und das Hexenhandy[Anm.1 5]",
+      "year": 2001
+    },
+    {
+      "id": "100",
+      "title": "Toteninsel: \nDas Rätsel der Sphinx\nDas vergessene Volk\nDer Fluch der Gräber",
+      "year": 2001
+    },
+    {
+      "id": "103",
+      "title": "Das Erbe des Meisterdiebs[Anm.1 6]",
+      "year": 2002
+    },
+    {
+      "id": "104",
+      "title": "Gift per E-Mail",
+      "year": 2002
+    },
+    {
+      "id": "105",
+      "title": "… und der Nebelberg[Anm.1 7]",
+      "year": 2002
+    },
+    {
+      "id": "106",
+      "title": "Der Mann ohne Kopf",
+      "year": 2002
+    },
+    {
+      "id": "107",
+      "title": "… und der Schatz der Mönche",
+      "year": 2003
+    },
+    {
+      "id": "108",
+      "title": "Die sieben Tore",
+      "year": 2003
+    },
+    {
+      "id": "109",
+      "title": "Gefährliches Quiz",
+      "year": 2003
+    },
+    {
+      "id": "110",
+      "title": "Panik im Park",
+      "year": 2003
+    },
+    {
+      "id": "111",
+      "title": "Die Höhle des Grauens",
+      "year": 2003
+    },
+    {
+      "id": "113",
+      "title": "Das Auge des Drachen",
+      "year": 2003
+    },
+    {
+      "id": "112",
+      "title": "Schlucht der Dämonen",
+      "year": 2003
+    },
+    {
+      "id": "114",
+      "title": "Die Villa der Toten",
+      "year": 2004
+    },
+    {
+      "id": "090",
+      "title": "Der Feuerteufel[Anm.1 8]",
+      "year": 2000
+    },
+    {
+      "id": "117",
+      "title": "Der finstere Rivale",
+      "year": 2004
+    },
+    {
+      "id": "116",
+      "title": "Codename: Cobra",
+      "year": 2004
+    },
+    {
+      "id": "115",
+      "title": "Auf tödlichem Kurs",
+      "year": 2004
+    },
+    {
+      "id": "120",
+      "title": "Der schwarze Skorpion[Anm.1 9]",
+      "year": 2005
+    },
+    {
+      "id": "118",
+      "title": "Das düstere Vermächtnis",
+      "year": 2004
+    },
+    {
+      "id": "119",
+      "title": "Der geheime Schlüssel",
+      "year": 2004
+    },
+    {
+      "id": "121",
+      "title": "Spur ins Nichts",
+      "year": 2008
+    },
+    {
+      "id": "122",
+      "title": "… und der Geisterzug",
+      "year": 2008
+    },
+    {
+      "id": "123",
+      "title": "Fußballfieber",
+      "year": 2008
+    },
+    {
+      "id": "126",
+      "title": "Schrecken aus dem Moor",
+      "year": 2008
+    },
+    {
+      "id": "124",
+      "title": "Geister-Canyon",
+      "year": 2008
+    },
+    {
+      "id": "125",
+      "title": "Feuermond: \nDas Rätsel der Meister\nDer Pfad der Täuschung\nDie Nacht der Schatten",
+      "year": 2008
+    },
+    {
+      "id": "129",
+      "title": "SMS aus dem Grab",
+      "year": 2009
+    },
+    {
+      "id": "127",
+      "title": "Schwarze Madonna",
+      "year": 2008
+    },
+    {
+      "id": "128",
+      "title": "Schatten über Hollywood",
+      "year": 2009
+    },
+    {
+      "id": "132",
+      "title": "Spuk im Netz",
+      "year": 2009
+    },
+    {
+      "id": "130",
+      "title": "Der Fluch des Drachen",
+      "year": 2009
+    },
+    {
+      "id": "131",
+      "title": "Haus des Schreckens",
+      "year": 2009
+    },
+    {
+      "id": "135",
+      "title": "Fluch des Piraten",
+      "year": 2009
+    },
+    {
+      "id": "133",
+      "title": "Fels der Dämonen",
+      "year": 2009
+    },
+    {
+      "id": "134",
+      "title": "Der tote Mönch",
+      "year": 2009
+    },
+    {
+      "id": "138",
+      "title": "Die geheime Treppe",
+      "year": 2010
+    },
+    {
+      "id": "136",
+      "title": "… und das versunkene Dorf",
+      "year": 2010
+    },
+    {
+      "id": "137",
+      "title": "Pfad der Angst",
+      "year": 2010
+    },
+    {
+      "id": "141",
+      "title": "… und die Fußball-Falle",
+      "year": 2010
+    },
+    {
+      "id": "139",
+      "title": "Das Geheimnis der Diva",
+      "year": 2010
+    },
+    {
+      "id": "140",
+      "title": "Stadt der Vampire",
+      "year": 2010
+    },
+    {
+      "id": "144",
+      "title": "Zwillinge der Finsternis",
+      "year": 2011
+    },
+    {
+      "id": "142",
+      "title": "Tödliches Eis",
+      "year": 2010
+    },
+    {
+      "id": "143",
+      "title": "… und die Poker-Hölle",
+      "year": 2010
+    },
+    {
+      "id": "147",
+      "title": "Grusel auf Campbell Castle",
+      "year": 2011
+    },
+    {
+      "id": "145",
+      "title": "… und die Rache der Samurai",
+      "year": 2011
+    },
+    {
+      "id": "146",
+      "title": "Der Biss der Bestie",
+      "year": 2011
+    },
+    {
+      "id": "151",
+      "title": "Schwarze Sonne",
+      "year": 2012
+    },
+    {
+      "id": "148",
+      "title": "… und die feurige Flut",
+      "year": 2011
+    },
+    {
+      "id": "149",
+      "title": "Der namenlose Gegner",
+      "year": 2011
+    },
+    {
+      "id": "150",
+      "title": "Geisterbucht: \nRashuras Schatz\nFlammendes Wasser\nDer brennende Kristall",
+      "year": 2011
+    },
+    {
+      "id": "153",
+      "title": "… und das Fußballphantom",
+      "year": 2012
+    },
+    {
+      "id": "152",
+      "title": "Skateboardfieber",
+      "year": 2012
+    },
+    {
+      "id": "154",
+      "title": "Botschaft aus der Unterwelt",
+      "year": 2012
+    },
+    {
+      "id": "155",
+      "title": "… und der Meister des Todes",
+      "year": 2012
+    },
+    {
+      "id": "156",
+      "title": "Im Netz des Drachen",
+      "year": 2012
+    },
+    {
+      "id": "157",
+      "title": "Im Zeichen der Schlangen",
+      "year": 2012
+    },
+    {
+      "id": "159",
+      "title": "Nacht der Tiger",
+      "year": 2013
+    },
+    {
+      "id": "158",
+      "title": "… und der Feuergeist",
+      "year": 2012
+    },
+    {
+      "id": "162",
+      "title": "… und der schreiende Nebel",
+      "year": 2013
+    },
+    {
+      "id": "160",
+      "title": "Geheimnisvolle Botschaften",
+      "year": 2013
+    },
+    {
+      "id": "161",
+      "title": "Die blutenden Bilder[Anm.1 10]",
+      "year": 2013
+    },
+    {
+      "id": "164",
+      "title": "Fußball-Teufel",
+      "year": 2013
+    },
+    {
+      "id": "163",
+      "title": "… und der verschollene Pilot",
+      "year": 2013
+    },
+    {
+      "id": "165",
+      "title": "Im Schatten des Giganten",
+      "year": 2013
+    },
+    {
+      "id": "168",
+      "title": "GPS-Gangster",
+      "year": 2014
+    },
+    {
+      "id": "167",
+      "title": "… und das blaue Biest",
+      "year": 2014
+    },
+    {
+      "id": "166",
+      "title": "… und die brennende Stadt",
+      "year": 2014
+    },
+    {
+      "id": "171",
+      "title": "… und das Phantom aus dem Meer",
+      "year": 2014
+    },
+    {
+      "id": "170",
+      "title": "Straße des Grauens",
+      "year": 2014
+    },
+    {
+      "id": "169",
+      "title": "Die Spur des Spielers",
+      "year": 2014
+    },
+    {
+      "id": "174",
+      "title": "… und das Tuch der Toten",
+      "year": 2015
+    },
+    {
+      "id": "172",
+      "title": "… und der Eisenmann",
+      "year": 2014
+    },
+    {
+      "id": "173",
+      "title": "Dämon der Rache",
+      "year": 2015
+    },
+    {
+      "id": "176",
+      "title": "… und der gestohlene Sieg",
+      "year": 2015
+    },
+    {
+      "id": "175",
+      "title": "Schattenwelt: \nTeuflisches Duell\nAngriff in der Nacht\nDie dunkle Macht",
+      "year": 2015
+    },
+    {
+      "id": "177",
+      "title": "Der Geist des Goldgräbers",
+      "year": 2015
+    },
+    {
+      "id": "178",
+      "title": "Der gefiederte Schrecken",
+      "year": 2015
+    },
+    {
+      "id": "179",
+      "title": "Die Rache des Untoten",
+      "year": 2016
+    },
+    {
+      "id": "180",
+      "title": "… und die flüsternden Puppen",
+      "year": 2016
+    },
+    {
+      "id": "182",
+      "title": "Im Haus des Henkers",
+      "year": 2016
+    },
+    {
+      "id": "181",
+      "title": "Das Kabinett des Zauberers",
+      "year": 2016
+    },
+    {
+      "id": "183",
+      "title": "… und der letzte Song",
+      "year": 2016
+    },
+    {
+      "id": "184",
+      "title": "… und der Hexengarten",
+      "year": 2016
+    },
+    {
+      "id": "187",
+      "title": "… und das silberne Amulett",
+      "year": 2017
+    },
+    {
+      "id": "186",
+      "title": "Insel des Vergessens",
+      "year": 2017
+    },
+    {
+      "id": "185",
+      "title": "… und der Mann ohne Augen",
+      "year": 2017
+    },
+    {
+      "id": "188",
+      "title": "Signale aus dem Jenseits",
+      "year": 2017
+    },
+    {
+      "id": "189",
+      "title": "… und der unsichtbare Passagier",
+      "year": 2017
+    },
+    {
+      "id": "190",
+      "title": "… und die Kammer der Rätsel",
+      "year": 2017
+    },
+    {
+      "id": "191",
+      "title": "Verbrechen im Nichts",
+      "year": 2018
+    },
+    {
+      "id": "192",
+      "title": "Im Bann des Drachen",
+      "year": 2018
+    },
+    {
+      "id": "193",
+      "title": "Schrecken aus der Tiefe",
+      "year": 2018
+    },
+    {
+      "id": "194",
+      "title": "… und die Zeitreisende",
+      "year": 2018
+    },
+    {
+      "id": "195",
+      "title": "Im Reich der Ungeheuer",
+      "year": 2018
+    },
+    {
+      "id": "196",
+      "title": "Geheimnis des Bauchredners",
+      "year": 2018
+    },
+    {
+      "id": "199",
+      "title": "… und der grüne Kobold",
+      "year": 2019
+    },
+    {
+      "id": "197",
+      "title": "Im Auge des Sturms",
+      "year": 2019
+    },
+    {
+      "id": "198",
+      "title": "Die Legende der Gaukler",
+      "year": 2019
+    },
+    {
+      "id": "201",
+      "title": "Höhenangst",
+      "year": 2019
+    },
+    {
+      "id": "200",
+      "title": "Feuriges Auge: \nDer verschwundene Detektiv\nDie silberne Hand\nDer Tempel der Gerechtigkeit",
+      "year": 2019
+    },
+    {
+      "id": "202",
+      "title": "Das weiße Grab",
+      "year": 2019
+    },
+    {
+      "id": "203",
+      "title": "Tauchgang ins Ungewisse",
+      "year": 2020
+    },
+    {
+      "id": "204",
+      "title": "Der dunkle Wächter",
+      "year": 2020
+    },
+    {
+      "id": "205",
+      "title": "Das rätselhafte Erbe",
+      "year": 2020
+    },
+    {
+      "id": "206",
+      "title": "… und der Mottenmann",
+      "year": 2020
+    },
+    {
+      "id": "207",
+      "title": "Die falschen Detektive",
+      "year": 2020
+    },
+    {
+      "id": "209",
+      "title": "Kreaturen der Nacht",
+      "year": 2021
+    },
+    {
+      "id": "210",
+      "title": "… und die schweigende Grotte",
+      "year": 2021
+    },
+    {
+      "id": "208",
+      "title": "Kelch des Schicksals",
+      "year": 2021
+    },
+    {
+      "id": "211",
+      "title": "… und der Jadekönig",
+      "year": 2021
+    },
+    {
+      "id": "213",
+      "title": "Der Fluch der Medusa",
+      "year": 2021
+    },
+    {
+      "id": "212",
+      "title": "… und der weiße Leopard",
+      "year": 2021
+    },
+    {
+      "id": "214",
+      "title": "… und der Geisterbunker",
+      "year": 2022
+    },
+    {
+      "id": "215",
+      "title": "… und die verlorene Zeit",
+      "year": 2022
+    },
+    {
+      "id": "216",
+      "title": "Die Schwingen des Unheils",
+      "year": 2022
+    },
+    {
+      "id": "217",
+      "title": "… und der Kristallschädel",
+      "year": 2022
+    },
+    {
+      "id": "218",
+      "title": "Im Netz der Lügen",
+      "year": 2022
+    },
+    {
+      "id": "219",
+      "title": "… und die Teufelsklippe",
+      "year": 2022
+    },
+    {
+      "id": "221",
+      "title": "Manuskript des Satans",
+      "year": 2023
+    },
+    {
+      "id": "220",
+      "title": "Im Wald der Gefahren",
+      "year": 2023
+    },
+    {
+      "id": "223",
+      "title": "… und der Knochenmann",
+      "year": 2023
+    },
+    {
+      "id": "222",
+      "title": "… und die Gesetzlosen",
+      "year": 2023
+    },
+    {
+      "id": "224",
+      "title": "Die Yacht des Verrats",
+      "year": 2023
+    },
+    {
+      "id": "226",
+      "title": "Die Spur der Toten",
+      "year": 2024
+    },
+    {
+      "id": "225",
+      "title": "… und der Puppenmacher",
+      "year": 2024
+    },
+    {
+      "id": "227",
+      "title": "Melodie der Rache",
+      "year": 2024
+    },
+    {
+      "id": "229",
+      "title": "Drehbuch der Täuschung",
+      "year": 2024
+    },
+    {
+      "id": "230",
+      "title": "Der Tag der Toten",
+      "year": 2024
+    },
+    {
+      "id": "228",
+      "title": "Der Ruf der Krähen",
+      "year": 2024
+    },
+    {
+      "id": "231",
+      "title": "… und der dreiäugige Schakal",
+      "year": 2025
+    },
+    {
+      "id": "232",
+      "title": "Die Stadt aus Gold",
+      "year": 2025
+    },
+    {
+      "id": "233",
+      "title": "Die Nacht der Gewitter",
+      "year": 2025
+    },
+    {
+      "id": "235",
+      "title": "… und das Fantasmofon",
+      "year": 2025
+    },
+    {
+      "id": "236",
+      "title": "Im Bann des Barrakudas",
+      "year": 2025
+    },
+    {
+      "id": "234",
+      "title": "… und der lebende Tresor",
+      "year": 2025
+    },
+    {
+      "id": "237",
+      "title": "… und der rote Büffel",
+      "year": 2026
+    },
+    {
+      "id": "238",
+      "title": "Falsche Schuld",
+      "year": 2026
+    },
+    {
+      "id": "239",
+      "title": "Das Geheimnis der sieben Palmen",
+      "year": 2026
+    },
+    {
+      "id": "240",
+      "title": "… und die schwarze Rose",
+      "year": 2026
+    },
+    {
+      "id": "241",
+      "title": "Meister des Lichts",
+      "year": 2026
+    }
+  ]
+}
